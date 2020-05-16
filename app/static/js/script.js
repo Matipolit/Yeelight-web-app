@@ -12,6 +12,17 @@ function toggleDimmer(lampID) {
         })
 }
 
+function toggleWB(mode, lampID) {
+  var temp = "5000"
+  if (mode == 1) {
+    temp = "2700"
+  }
+  $.post("toggleWB/" + lampID, {'temp' : temp})
+    .done(function( data ) {
+        Snackbar.show({text: data});
+    });
+}
+
 function changecolor(jscolor, lampID) {
 colors = hexToRgb(jscolor)
 $.post( "color/" + lampID, colors)
@@ -30,6 +41,7 @@ function changeIntensity(intensity, lampID) {
 
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    console.log(result);
     return result ? {
         r: parseInt(result[1], 16),
         g: parseInt(result[2], 16),
