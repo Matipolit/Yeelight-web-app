@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="description" content="A web app for controlling your local Yeelight devices.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta id="data" data-value="{{data}}">
     <title>Yeelight controller</title>
@@ -65,37 +65,19 @@
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-        </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-          <h3>Yeelight web controller</h3>
-        </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Yeelight web controller</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <button class="mdl-button mdl-js-button mdl-button--icon" onclick="refresh()">
+            <i class="material-icons">refresh</i>
+          </button>
+
         </div>
       </header>
       <main class="mdl-layout__content">
         {% block content %}
-        <div class="mdl-layout__tab-panel is-active" id="overview">
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-                <h4 class="mdl-cell mdl-cell--12-col">Lampe chambre</h4>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick="toggleDimmer()">
-                  Allumer/Eteindre
-                </button>
-                  <br/>
-                  <input class="jscolor" value="ab2567" onchange="changecolor(this.jscolor)">
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn2">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn2">
-              <li class="mdl-menu__item">Lorem</li>
-              <li class="mdl-menu__item" disabled>Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul>
-          </section>
-        </div>
         {% endblock %}
       </main>
     </div>

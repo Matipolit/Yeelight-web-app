@@ -5,6 +5,15 @@ $( document ).ready(function() {
 
 });
 
+function refresh() {
+  Snackbar.show({text: "Refreshing..."});
+  $.post("refresh/")
+      .done(function( data ) {
+          Snackbar.show({text: data});
+          window.location.reload(true);
+      })
+}
+
 function toggleDimmer(lampID) {
     $.post("f/" + lampID)
         .done(function( data ) {

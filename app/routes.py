@@ -1,23 +1,32 @@
 from app import app
 
 from flask import render_template, request, abort, Flask
+#from flask_socketio import SocketIO, emit
 from yeelight import *
-import json
-from collections import namedtuple
-import json
+# bulbs = [Bulb('192.168.1.100'), Bulb('192.168.1.101'), Bulb('192.168.1.102')]
 
-#bulbs = [Bulb('192.168.1.100'), Bulb('192.168.1.101'), Bulb('192.168.1.102')]
-
-DAYLIGHT_CT=5000
-EVENING_CT=2000
-
-bulb_dictionary = discover_bulbs()
-print("discovered bulbs: " + str(bulb_dictionary))
+DAYLIGHT_CT = 5000
+EVENING_CT = 2000
 
 bulbs = []
-for bulb in bulb_dictionary:
-    bulbs.append(Bulb(bulb['ip']))
-    print(hex(int(bulb['capabilities']['rgb'])))
+
+
+@app.route('/refresh/', methods=['POST'])
+def refresh():
+    try:
+        global bulb_dictionary
+        global bulbs
+        bulb_dictionary = discover_bulbs()
+        print("discovered bulbs: " + str(bulb_dictionary))
+        bulbs = []
+        for bulb in bulb_dictionary:
+            bulbs.append(Bulb(bulb['ip']))
+            print(hex(int(bulb['capabilities']['rgb'])))
+        return "Refresh successful"
+    except Exception as e:
+        return e.args.__str__()
+
+refresh()
 # ROUTING/VIEW FUNCTIONS
 
 

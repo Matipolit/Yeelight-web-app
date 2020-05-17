@@ -2,11 +2,16 @@
 
 {% block content %}
     <div class="mdl-layout__tab-panel is-active" id="overview">
-        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+        <section class="section--center mdl-grid mdl-shadow--2dp">
             {% for bulb in bulbs %}
             <div class="mdl-card mdl-cell mdl-cell--4-col">
                 <div class="mdl-card__supporting-text mdl-grid">
-                    <h4 class="mdl-cell mdl-cell--12-col">{{bulb.name}}</h4>
+                    <h4 class="mdl-cell mdl-cell--12-col">
+                    {{bulb.name}}
+                    {% if not bulb.name %}
+                    Bulb {{loop.index0 + 1}}
+                    {% endif %}
+                    </h4>
                 </div>
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--12-col">
@@ -17,12 +22,12 @@
                 </div>
                 {% if "adjust_ct" in bulb.capabilities.support %}
                 <div class="mdl-grid">
-                  <div class="mdl-cell mdl-cell--6-col">
+                  <div class="mdl-cell mdl-cell--6-col mdl-cell--2-col-phone">
                     <button class="mdl-button mdl-js-button mdl-button--icon" onclick="toggleWB(0, {{loop.index0}})">
                       <i class="material-icons">wb_sunny</i>
                     </button>
                   </div>
-                  <div class="mdl-cell mdl-cell--6-col">
+                  <div class="mdl-cell mdl-cell--6-col mdl-cell--2-col-phone">
                     <button class="mdl-button mdl-js-button mdl-button--icon" onclick="toggleWB(1, {{loop.index0}})">
                       <i class="material-icons">nights_stay</i>
                     </button>
